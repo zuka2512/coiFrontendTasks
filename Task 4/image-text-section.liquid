@@ -1,0 +1,57 @@
+{% schema %}
+{
+  "name": "Image + Text Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Handcrafted and Responsibly Sourced"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image + Text Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="image-text-section">
+    <div class="image-text-section__image">
+        {% if section.settings.image %}
+            <img src="{{ section.settings.image | image_url }}" alt="{{ section.settings.title }}">
+        {% endif %}
+    </div>
+    <div class="image-text-section__content">
+        <h3 class="image-text-section__title">{{ section.settings.title }}</h3>
+        <p class="image-text-section__text">{{ section.settings.description }}</p>
+        {% if section.settings.button_text and section.settings.button_link %}
+            <a href="{{ section.settings.button_link }}" class="image-text-section__button">{{ section.settings.button_text }}</a>
+        {% endif %}
+    </div>
+</div>
